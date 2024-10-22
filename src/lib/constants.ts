@@ -1,0 +1,1 @@
+export const MAX_FEEDBACK_CHARS = 150;  //The maximum number of characters allowed for a feedback message
