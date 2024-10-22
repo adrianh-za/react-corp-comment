@@ -1,25 +1,21 @@
 import { FeedbackItem, FeedbackItemProps } from "./FeedbackItem.tsx";
 import { Spinner } from "../common/Spinner.tsx";
 import { ErrorMessage } from "../common/ErrorMessage.tsx";
-import { TFeedbackItem } from "../../lib/types.ts";
+import { useFeedbackItemsContext } from "../../lib/hooks.ts";
 
-export type FeedbackListProps = {
-  feedbackItems: TFeedbackItem[],
-  errorMessage: string,
-  isLoading: boolean
-}
+export const FeedbackList = () => {
 
-export const FeedbackList = (props: FeedbackListProps) => {
+  const { filteredFeedbackItems, isLoading, loadingError } = useFeedbackItemsContext();
 
   return (
     <ol className="feedback-list">
 
-      {props.isLoading && <Spinner/>}
+      {isLoading && <Spinner/>}
 
-      {props.errorMessage && <ErrorMessage message={props.errorMessage}/>}
+      {loadingError && <ErrorMessage message={loadingError}/>}
 
       {
-        !props.isLoading && props.feedbackItems.map((feedbackItem, index) => {
+        !isLoading && filteredFeedbackItems.map((feedbackItem, index) => {
 
           //Create props object for FeedbackItem component
           const props: FeedbackItemProps = {

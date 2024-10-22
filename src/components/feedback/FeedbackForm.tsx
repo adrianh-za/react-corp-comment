@@ -13,7 +13,7 @@ const ValidationState = {
 
 type ValidationState = (typeof ValidationState)[keyof typeof ValidationState]
 
-export const FeedbackForm = (props : FeedbackFormProps) => {
+export const FeedbackForm = (props: FeedbackFormProps) => {
   const [text, setText] = useState('');
   const [validationState, setValidationState] = useState<ValidationState>(ValidationState.None);
   const remainingChars = MAX_FEEDBACK_CHARS - text.length;
