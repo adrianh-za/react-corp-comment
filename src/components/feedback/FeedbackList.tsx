@@ -5,14 +5,14 @@ import { useFeedbackItemsContext } from "../../lib/hooks.ts";
 
 export const FeedbackList = () => {
 
-  const { filteredFeedbackItems, isLoading, loadingError } = useFeedbackItemsContext();
+  const { filteredFeedbackItems, isLoading, errorMessage } = useFeedbackItemsContext();
 
   return (
     <ol className="feedback-list">
 
       {isLoading && <Spinner/>}
 
-      {loadingError && <ErrorMessage message={loadingError}/>}
+      {errorMessage && <ErrorMessage message={errorMessage}/>}
 
       {
         !isLoading && filteredFeedbackItems.map((feedbackItem, index) => {
